@@ -502,7 +502,7 @@
 					title = elements[index].title;
 				}
 				if (title) {
-					$('#shinybox-caption').append(title);
+					$('#shinybox-caption').text(title);
 				}
 			},
 
