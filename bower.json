@@ -1,5 +1,5 @@
 {
-  "name": "swipebox",
+  "name": "shinybox",
   "version": "1.2.1",
-  "main": "source/jquery.swipebox.js"
+  "main": "source/jquery.shinybox.js"
 }
