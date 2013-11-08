@@ -139,6 +139,7 @@ html.shinybox {
   height: 50px;
   display: inline-block;
   position: relative;
+  z-index: 1;
 }
 
 #shinybox-close {
