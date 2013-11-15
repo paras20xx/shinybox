@@ -467,7 +467,7 @@
                 if (!$this.isVideo(src)) {
                     setTimeout(function () {
                         $this.openMedia(index);
-                    }, 1000);
+                    }, 300);
                 } else {
                     $this.openMedia(index);
                 }
