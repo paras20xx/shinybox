@@ -31,7 +31,6 @@
         selector = elem.selector,
         $selector = $(selector),
         isTouch = typeof document.createTouch !== 'undefined' || ('ontouchstart' in window) || ('onmsgesturechange' in window) || navigator.msMaxTouchPoints,
-        supportSVG = !!(window.SVGSVGElement),
         winWidth = window.innerWidth ? window.innerWidth : $(window).width(),
         winHeight = window.innerHeight ? window.innerHeight : $(window).height(),
         html = '';
@@ -165,15 +164,6 @@
                         '-o-transition' : '0.5s',
                         '-khtml-transition' : '0.5s',
                         'transition' : '0.5s'
-                    });
-                }
-
-
-                if (supportSVG) {
-                    var bg = $('#shinybox-close').css('background-image');
-                    bg = bg.replace('png', 'svg');
-                    $('#shinybox-prev,#shinybox-next,#shinybox-close').css({
-                        'background-image' : bg
                     });
                 }
 
