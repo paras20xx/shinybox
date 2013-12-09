@@ -109,14 +109,6 @@ html.shinybox {
   bottom: 0!important;
 }
 
-#shinybox-caption {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  text-align: center;
-}
 #shinybox-top {
   top: -50px;
 }
@@ -139,6 +131,7 @@ html.shinybox {
   height: 50px;
   display: inline-block;
   position: relative;
+  z-index: 1;
 }
 
 #shinybox-close {
@@ -252,8 +245,7 @@ html.shinybox {
 #shinybox-caption {
   color: white!important;
   font-size: 15px;
-  line-height: 43px;
+  line-height: 50px;
   font-family: Helvetica, Arial, sans-serif;
+  text-align: center;
 }
-
-
