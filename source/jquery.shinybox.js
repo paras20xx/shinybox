@@ -217,17 +217,7 @@
 
 
                 $('#shinybox-overlay').css(sliderCss);
-                if (plugin.settings.hideBarsDelay === 0) {
-                    $('#shinybox-slider').css({
-                        top: '50px',
-                        height: (height - 100) + 'px'
-                    });
-                } else {
-                    $('#shinybox-slider').css({
-                        top: 0,
-                        height: '100%'
-                    });
-                }
+
             },
 
             resize : function () {
