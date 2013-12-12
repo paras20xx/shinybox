@@ -122,7 +122,7 @@ html.shinybox {
 
 #shinybox-prev, #shinybox-next,
 #shinybox-close {
-  background-image: url("img/icons.svg");
+  background-image: url("img/icons.png");
   background-repeat: no-repeat;
   border: none!important;
   text-decoration: none!important;
