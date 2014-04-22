@@ -30,7 +30,6 @@ html.shinybox {
 }
 
 #shinybox-slider .slide {
-  background: url("img/loader.gif") no-repeat center center;
   height: 100%;
   width: 100%;
   line-height: 1px;
@@ -38,8 +37,11 @@ html.shinybox {
   display: inline-block;
 }
 
-#shinybox-slider .slide.loaded {
-  background-image: none !important;
+#shinybox-slider .loading {
+  background: url("img/loader.gif") no-repeat center center;
+  height: 31px;
+  width: 31px;
+  margin: auto;
 }
 
 #shinybox-slider .slide:before {

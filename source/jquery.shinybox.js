@@ -493,14 +493,15 @@
                     return false;
                 }
 
+                var $element = $('#shinybox-slider .slide').eq(index);
                 if (!$this.isVideo(src)) {
+                    $element.html('<div class="loading"></div>');
                     $this.loadMedia(src, function () {
-                        $('#shinybox-slider .slide').eq(index).html(this).addClass('loaded');
+                        $element.html(this);
                     });
                 } else {
-                    $('#shinybox-slider .slide').eq(index).html($this.getVideo(src));
+                    $element.html($this.getVideo(src));
                 }
-
             },
 
             setTitle : function (index, isFirst) {
