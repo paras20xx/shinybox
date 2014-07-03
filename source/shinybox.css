@@ -31,10 +31,11 @@ html.shinybox {
 
 #shinybox-slider .slide {
   height: 100%;
-  width: 100%;
+  width: 98%;
   line-height: 1px;
   text-align: center;
   display: inline-block;
+  margin: 0 1%;
 }
 
 #shinybox-slider .loading {
