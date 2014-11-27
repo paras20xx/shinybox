@@ -7,7 +7,7 @@
 @license      MIT License
 
 ----------------------------------------------------------------------------------------------*/
-
+/*global jQuery*/
 (function (window, document, $) {
 
     $.shinybox = function (elem, options) {
@@ -200,7 +200,7 @@
                         if (window.orientation === 0) {
                             width = winWidth;
                             height = winHeight;
-                        } else if (window.orientation == 90 || window.orientation == -90) {
+                        } else if (window.orientation === 90 || window.orientation === -90) {
                             width = winHeight;
                             height = winWidth;
                         }
@@ -494,13 +494,15 @@
                 }
 
                 var $element = $('#shinybox-slider .slide').eq(index);
-                if (!$this.isVideo(src)) {
+                if ($this.isVideo(src)) {
+                    $element.html($this.getVideo(src));
+                } else if ($this.isPDF(src)) {
+                    $element.html($this.getPDF(src));
+                } else {
                     $element.html('<div class="loading"></div>');
                     $this.loadMedia(src, function () {
                         $element.html(this);
                     });
-                } else {
-                    $element.html($this.getVideo(src));
                 }
             },
 
@@ -515,6 +517,19 @@
                 if (title) {
                     $('#shinybox-caption').text(title);
                 }
+            },
+
+            isPDF: function (src) {
+                if (src) {
+                    if (src.match(/\.pdf(?:\?|$)/)) {
+                        return true;
+                    }
+                }
+            },
+
+            getPDF: function (url) {
+                var iframe = '<iframe src="' + url + '">';
+                return '<div class="shinybox-pdf-container">' + iframe + '</div>';
             },
 
             isVideo : function (src) {
