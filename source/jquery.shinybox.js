@@ -529,7 +529,7 @@
 
             getPDF: function (url) {
                 var iframe = '<iframe src="' + url + '">';
-                return '<div class="shinybox-pdf-container">' + iframe + '</div>';
+                return '<div class="shinybox-pdf-container"><div class="shinybox-pdf">' + iframe + '</div></div>';
             },
 
             isVideo : function (src) {
