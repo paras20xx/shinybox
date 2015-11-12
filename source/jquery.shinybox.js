@@ -34,7 +34,8 @@
         supportSVG = !!(window.SVGSVGElement),
         winWidth = window.innerWidth ? window.innerWidth : $(window).width(),
         winHeight = window.innerHeight ? window.innerHeight : $(window).height(),
-        html = '';
+        html = '',
+        id = 'shinybox-overlay';
 
         plugin.settings = {};
 
@@ -43,28 +44,30 @@
             plugin.settings = $.extend({}, defaults, options);
             var htmlTop = '', htmlBottom = '';
             if (plugin.settings.closePlacement === 'top') {
-                htmlTop += '<a id="shinybox-close"></a>';
+                htmlTop += '<a class="shinybox-close"></a>';
             } else if (plugin.settings.closePlacement === 'bottom') {
-                htmlBottom += '<a id="shinybox-close"></a>';
+                htmlBottom += '<a class="shinybox-close"></a>';
             }
             if (plugin.settings.captionPlacement === 'top') {
-                htmlTop += '<div id="shinybox-caption"></div>';
+                htmlTop += '<div class="shinybox-caption"></div>';
             } else if (plugin.settings.captionPlacement === 'bottom') {
-                htmlBottom += '<div id="shinybox-caption"></div>';
+                htmlBottom += '<div class="shinybox-caption"></div>';
             }
             if (plugin.settings.navigationPlacement === 'top') {
-                htmlTop += '<a id="shinybox-prev"></a>' +
-                    '<a id="shinybox-next"></a>';
+                htmlTop += '<a class="shinybox-prev"></a>' +
+                    '<a class="shinybox-next"></a>';
             } else if (plugin.settings.navigationPlacement === 'bottom') {
-                htmlBottom += '<a id="shinybox-prev"></a>' +
-                    '<a id="shinybox-next"></a>';
+                htmlBottom += '<a class="shinybox-prev"></a>' +
+                    '<a class="shinybox-next"></a>';
             }
-        html = '<div id="shinybox-overlay">' +
-            '<div id="shinybox-slider"></div>' +
-            '<div id="shinybox-top">' +
+            id = plugin.settings.id || id;
+
+        html = '<div id="' + id + '" class="shinybox-overlay">' +
+            '<div class="shinybox-slider"></div>' +
+            '<div class="shinybox-top">' +
             htmlTop +
             '</div>' +
-            '<div id="shinybox-bottom">' +
+            '<div class="shinybox-bottom">' +
             htmlBottom +
             '</div>' +
             '</div>';
@@ -145,21 +148,21 @@
                 $('body').append(html);
 
                 if ($this.doCssTrans()) {
-                    $('#shinybox-slider').css({
+                    $('.shinybox-slider').css({
                         '-webkit-transition' : 'left 0.4s ease',
                         '-moz-transition' : 'left 0.4s ease',
                         '-o-transition' : 'left 0.4s ease',
                         '-khtml-transition' : 'left 0.4s ease',
                         'transition' : 'left 0.4s ease'
                     });
-                    $('#shinybox-overlay').css({
+                    $('.shinybox-overlay').css({
                         '-webkit-transition' : 'opacity 1s ease',
                         '-moz-transition' : 'opacity 1s ease',
                         '-o-transition' : 'opacity 1s ease',
                         '-khtml-transition' : 'opacity 1s ease',
                         'transition' : 'opacity 1s ease'
                     });
-                    $('#shinybox-bottom, #shinybox-top').css({
+                    $('.shinybox-bottom, .shinybox-top').css({
                         '-webkit-transition' : '0.5s',
                         '-moz-transition' : '0.5s',
                         '-o-transition' : '0.5s',
@@ -170,15 +173,15 @@
 
 
                 if (supportSVG) {
-                    var bg = $('#shinybox-close').css('background-image');
+                    var bg = $('.shinybox-close').css('background-image');
                     bg = bg.replace('png', 'svg');
-                    $('#shinybox-prev,#shinybox-next,#shinybox-close').css({
+                    $('.shinybox-prev,.shinybox-next,.shinybox-close').css({
                         'background-image' : bg
                     });
                 }
 
                 $.each(elements, function () {
-                    $('#shinybox-slider').append('<div class="slide"></div>');
+                    $('.shinybox-slider').append('<div class="slide"></div>');
                 });
 
                 $this.setDim();
@@ -216,14 +219,14 @@
                 };
 
 
-                $('#shinybox-overlay').css(sliderCss);
+                $('.shinybox-overlay').css(sliderCss);
                 if (plugin.settings.hideBarsDelay === 0) {
-                    $('#shinybox-slider').css({
+                    $('.shinybox-slider').css({
                         top: '50px',
                         height: (height - 100) + 'px'
                     });
                 } else {
-                    $('#shinybox-slider').css({
+                    $('.shinybox-slider').css({
                         top: 0,
                         height: '100%'
                     });
@@ -261,7 +264,7 @@
                     swipMinDistance = 10,
                     startCoords = {},
                     endCoords = {};
-                    var bars = $('#shinybox-top, #shinybox-bottom');
+                    var bars = $('.shinybox-top, .shinybox-bottom');
 
                     bars.addClass('visible-bars');
                     $this.setTimeout();
@@ -334,12 +337,12 @@
             },
 
             showBars : function () {
-                var bars = $('#shinybox-top, #shinybox-bottom');
+                var bars = $('.shinybox-top, .shinybox-bottom');
                 if (this.doCssTrans()) {
                     bars.addClass('visible-bars');
                 } else {
-                    $('#shinybox-top').animate({ top : 0 }, 500);
-                    $('#shinybox-bottom').animate({ bottom : 0 }, 500);
+                    $('.shinybox-top').animate({ top : 0 }, 500);
+                    $('.shinybox-bottom').animate({ bottom : 0 }, 500);
                     setTimeout(function () {
                         bars.addClass('visible-bars');
                     }, 1000);
@@ -347,12 +350,12 @@
             },
 
             hideBars : function () {
-                var bars = $('#shinybox-top, #shinybox-bottom');
+                var bars = $('.shinybox-top, .shinybox-bottom');
                 if (this.doCssTrans()) {
                     bars.removeClass('visible-bars');
                 } else {
-                    $('#shinybox-top').animate({ top : '-50px' }, 500);
-                    $('#shinybox-bottom').animate({ bottom : '-50px' }, 500);
+                    $('.shinybox-top').animate({ top : '-50px' }, 500);
+                    $('.shinybox-bottom').animate({ bottom : '-50px' }, 500);
                     setTimeout(function () {
                         bars.removeClass('visible-bars');
                     }, 1000);
@@ -361,19 +364,19 @@
 
             animBars : function () {
                 var $this = this;
-                var bars = $('#shinybox-top, #shinybox-bottom');
+                var bars = $('.shinybox-top, .shinybox-bottom');
 
                 bars.addClass('visible-bars');
                 $this.setTimeout();
 
-                $('#shinybox-slider').click(function (e) {
+                $('.shinybox-slider').click(function (e) {
                     if (!bars.hasClass('visible-bars')) {
                         $this.showBars();
                         $this.setTimeout();
                     }
                 });
 
-                $('#shinybox-bottom').hover(
+                $('.shinybox-bottom').hover(
                     function () {
                         $this.showBars();
                         bars.addClass('force-visible-bars');
@@ -407,16 +410,16 @@
                 var $this = this;
 
                 if (elements.length < 2) {
-                    $('#shinybox-prev, #shinybox-next').hide();
+                    $('.shinybox-prev, .shinybox-next').hide();
                 } else {
-                    $('#shinybox-prev').bind('click touchend', function (e) {
+                    $('.shinybox-prev').bind('click touchend', function (e) {
                         e.preventDefault();
                         e.stopPropagation();
                         $this.getPrev();
                         $this.setTimeout();
                     });
 
-                    $('#shinybox-next').bind('click touchend', function (e) {
+                    $('.shinybox-next').bind('click touchend', function (e) {
                         e.preventDefault();
                         e.stopPropagation();
                         $this.getNext();
@@ -424,11 +427,11 @@
                     });
                 }
 
-                $('#shinybox-close').bind('click touchend', function (e) {
+                $('.shinybox-close').bind('click touchend', function (e) {
                     $this.closeSlide();
                 });
 
-                $('#shinybox-slider .slide').bind('click', function (e) {
+                $('.shinybox-slider .slide').bind('click', function (e) {
                     if (e.target === this) {
                         $this.closeSlide();
                     }
@@ -438,7 +441,7 @@
             setSlide : function (index, isFirst) {
                 isFirst = isFirst || false;
 
-                var slider = $('#shinybox-slider');
+                var slider = $('.shinybox-slider');
 
                 if (this.doCssTrans()) {
                     slider.css({ left : (-index * 100) + '%' });
@@ -446,19 +449,19 @@
                     slider.animate({ left : (-index * 100) + '%' });
                 }
 
-                $('#shinybox-slider .slide').removeClass('current');
-                $('#shinybox-slider .slide').eq(index).addClass('current');
+                $('.shinybox-slider .slide').removeClass('current');
+                $('.shinybox-slider .slide').eq(index).addClass('current');
                 this.setTitle(index);
 
                 if (isFirst) {
                     slider.fadeIn();
                 }
 
-                $('#shinybox-prev, #shinybox-next').removeClass('disabled');
+                $('.shinybox-prev, .shinybox-next').removeClass('disabled');
                 if (index === 0) {
-                    $('#shinybox-prev').addClass('disabled');
+                    $('.shinybox-prev').addClass('disabled');
                 } else if (index === elements.length - 1) {
-                    $('#shinybox-next').addClass('disabled');
+                    $('.shinybox-next').addClass('disabled');
                 }
             },
 
@@ -493,7 +496,7 @@
                     return false;
                 }
 
-                var $element = $('#shinybox-slider .slide').eq(index);
+                var $element = $('.shinybox-slider .slide').eq(index);
                 if ($this.isVideo(src)) {
                     $element.html($this.getVideo(src));
                 } else if ($this.isPDF(src)) {
@@ -509,13 +512,13 @@
             setTitle : function (index, isFirst) {
                 var title = null;
 
-                $('#shinybox-caption').empty();
+                $('.shinybox-caption').empty();
 
                 if (elements[index] !== undefined) {
                     title = elements[index].title;
                 }
                 if (title) {
-                    $('#shinybox-caption').text(title);
+                    $('.shinybox-caption').text(title);
                 }
             },
 
@@ -568,34 +571,33 @@
 
             getNext : function () {
                 var $this = this,
-                    index = $('#shinybox-slider .slide').index($('#shinybox-slider .slide.current'));
+                    index = $('.shinybox-slider .slide').index($('.shinybox-slider .slide.current'));
                 if (index + 1 < elements.length) {
                     index += 1;
                     $this.setSlide(index);
                     $this.preloadMedia(index + 1);
                 } else {
 
-                    $('#shinybox-slider').addClass('rightSpring');
+                    $('.shinybox-slider').addClass('rightSpring');
                     setTimeout(function () {
-                        $('#shinybox-slider').removeClass('rightSpring');
+                        $('.shinybox-slider').removeClass('rightSpring');
                     }, 500);
                 }
             },
 
             getPrev : function () {
-                var index = $('#shinybox-slider .slide').index($('#shinybox-slider .slide.current'));
+                var index = $('.shinybox-slider .slide').index($('.shinybox-slider .slide.current'));
                 if (index > 0) {
                     index -= 1;
                     this.setSlide(index);
                     this.preloadMedia(index - 1);
                 } else {
-                    $('#shinybox-slider').addClass('leftSpring');
+                    $('.shinybox-slider').addClass('leftSpring');
                     setTimeout(function () {
-                        $('#shinybox-slider').removeClass('leftSpring');
+                        $('.shinybox-slider').removeClass('leftSpring');
                     }, 500);
                 }
             },
-
 
             closeSlide : function () {
                 $('html').removeClass('shinybox');
@@ -608,8 +610,8 @@
                 $('body').unbind('touchstart');
                 $('body').unbind('touchmove');
                 $('body').unbind('touchend');
-                $('#shinybox-slider').unbind();
-                $('#shinybox-overlay').remove();
+                $('.shinybox-slider').unbind();
+                $('.shinybox-overlay').remove();
                 if (!$.isArray(elem))
                     elem.removeData('_shinybox');
                 if (this.target)
