@@ -64,7 +64,8 @@ initialIndexOnArray: 0, // which image index to init when a array is passed
 hideBarsDelay : 3000, // 0 to always show caption and action bar
 videoMaxWidth : 1140, // videos max width
 beforeOpen: function(){} , // called before opening
-afterClose: function(){} // called after closing
+afterClose: function(){}, // called after closing
+sort: function (a, b){} // sort elements before opening
 ```
 
 ####Credits

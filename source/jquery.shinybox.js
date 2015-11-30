@@ -20,6 +20,7 @@
             vimeoColor: 'CCCCCC',
             beforeOpen: null,
             afterClose: null,
+            sort: null,
             closePlacement: 'bottom',
             captionPlacement: 'top',
             navigationPlacement: 'bottom'
