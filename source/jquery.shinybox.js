@@ -40,9 +40,11 @@
         plugin.settings = {};
 
         plugin.init = function () {
-
             plugin.settings = $.extend({}, defaults, options);
             var htmlTop = '', htmlBottom = '';
+            if (plugin.settings.sort) {
+               $selector.sort(plugin.settings.sort);
+            }
             if (plugin.settings.closePlacement === 'top') {
                 htmlTop += '<a class="shinybox-close"></a>';
             } else if (plugin.settings.closePlacement === 'bottom') {
