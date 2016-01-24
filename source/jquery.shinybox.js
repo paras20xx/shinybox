@@ -201,16 +201,19 @@
                 var width, height, sliderCss = {};
 
                 if ("onorientationchange" in window) {
-
-                    window.addEventListener("orientationchange", function () {
+                    var calculateWidthAndHeight = function () {
                         if (window.orientation === 0) {
-                            width = winWidth;
-                            height = winHeight;
-                        } else if (window.orientation === 90 || window.orientation === -90) {
-                            width = winHeight;
-                            height = winWidth;
-                        }
-                    }, false);
+							width = winWidth;
+							height = winHeight;
+						} else if (window.orientation === 90 || window.orientation === -90) {
+							width = winHeight;
+							height = winWidth;
+						}
+                    };
+                    calculateWidthAndHeight();
+					window.addEventListener("orientationchange", function () {
+						calculateWidthAndHeight();
+					}, false);
                 } else {
                     width = window.innerWidth ? window.innerWidth : $(window).width();
                     height = window.innerHeight ? window.innerHeight : $(window).height();
