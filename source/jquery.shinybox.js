@@ -201,8 +201,7 @@
                 var width, height, sliderCss = {};
 
                 if ("onorientationchange" in window) {
-
-                    window.addEventListener("orientationchange", function () {
+                    var calculateWidthAndHeight = function () {
                         if (window.orientation === 0) {
                             width = winWidth;
                             height = winHeight;
@@ -210,6 +209,10 @@
                             width = winHeight;
                             height = winWidth;
                         }
+                    };
+                    calculateWidthAndHeight();
+                    window.addEventListener("orientationchange", function () {
+                        calculateWidthAndHeight();
                     }, false);
                 } else {
                     width = window.innerWidth ? window.innerWidth : $(window).width();
