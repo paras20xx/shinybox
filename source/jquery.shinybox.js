@@ -397,7 +397,8 @@
 
             keyboard : function () {
                 var $this = this;
-                $(window).bind('keyup', function (e) {
+                // Bind to keydown, so we cancel all unsupported keyboard events too
+                $(window).bind('keydown', function (e) {
                     e.preventDefault();
                     e.stopPropagation();
                     if (e.keyCode === 37) {
