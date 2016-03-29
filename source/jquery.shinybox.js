@@ -202,13 +202,8 @@
 
                 if ("onorientationchange" in window) {
                     var calculateWidthAndHeight = function () {
-                        if (window.orientation === 0) {
-                            width = winWidth;
-                            height = winHeight;
-                        } else if (window.orientation === 90 || window.orientation === -90) {
-                            width = winHeight;
-                            height = winWidth;
-                        }
+                        width = window.innerWidth ? window.innerWidth : $(window).width();
+                        height = window.innerHeight ? window.innerHeight : $(window).height();
                     };
                     calculateWidthAndHeight();
                     window.addEventListener("orientationchange", function () {
